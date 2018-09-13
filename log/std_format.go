@@ -13,5 +13,5 @@ type HttpRequestLog struct {
 	AppClient     string                         `json:"appClient"`
 	Headers       map[string]jsoniter.RawMessage `json:"headers"`
 	Request       map[string]jsoniter.RawMessage `json:"request"`
-	Response      map[string]jsoniter.RawMessage `json:"response"`
+	Response      map[string]interface{} `json:"response"`
 }
