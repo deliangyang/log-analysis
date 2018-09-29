@@ -1,8 +1,24 @@
 package model
 
 type Product struct {
-	ID           string `gorm:"AUTO_INCREMENT;primary_key"`
-	LanguageCode string
-	Code         string
-	Name         string
+	Model
+	Title string `'gorm:"default:''"'`
+	Amount int64
 }
+
+type StatProductView struct {
+	ProductId uint
+	PV uint
+	UV uint
+}
+
+type ProductViewedDetail struct {
+	Model
+	ProductId uint
+	UserId uint
+}
+
+func (Product) TableName() string {
+	return "products"
+}
+
