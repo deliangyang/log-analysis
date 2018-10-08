@@ -8,6 +8,7 @@ type Product struct {
 
 type StatProductView struct {
 	ProductId uint
+	Date string
 	PV uint
 	UV uint
 }
