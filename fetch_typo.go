@@ -37,22 +37,21 @@ func main() {
 			for {
 				select {
 				case domain := <-urlList:
-					println(domain)
+					fmt.Println(domain)
 					cmd := exec.Command(rubyExePath, urlCrazyPath, domain)
 					opBytes, err := cmd.Output()
 					if err != nil {
-						println(err)
+						fmt.Println(err)
 					}
-					urls := strings.Split(string(opBytes), "\n")
+					urls := strings.Split(string(opBytes), "\r\n")
 					extension := getDomainExtension(domain)
 					for _, url := range urls {
-						println(url)
 						if strings.ContainsAny(url, extension) {
 							wr.WriteString(url + "\r\n")
 						}
 					}
 					wr.Flush()
-				case <-timeoutAfter2(time.Second * 2):
+				case <-timeoutAfter2(time.Second * 4):
 					waitGroup.Done()
 				}
 			}
